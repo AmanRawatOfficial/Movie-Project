@@ -1,6 +1,11 @@
+import "./Footer.scss";
+
 function Footer () {
     return (
-        <div>Footer</div>
+        <footer className="footer">
+            <div>Movie App</div>
+            <div>@2022, Movie, Inc. or its affiliates</div>
+        </footer>
     )
 }
 
