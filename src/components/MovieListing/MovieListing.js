@@ -1,19 +1,9 @@
 import { useSelector } from "react-redux";
 import MovieCard from "../MovieCard/MovieCard";
+import "./MovieListing.scss"
 
 function MovieListing() {
     const movies = useSelector((state) => state.movies.movies);
-
-    // renderMovies =
-    //     movies.Response === "True" ? (
-    //         movies.Search.map((movie, index) => {
-    //             <MovieCard key={index} data={movie} />;
-    //         })
-    //     ) : (
-    //         <div className="movies-error">
-    //             <h3>{movies.Error}</h3>
-    //         </div>
-    //     );
 
     let renderMovies =
         movies.Response === "True" ? (
