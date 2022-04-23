@@ -4,10 +4,9 @@ import { APIKey } from "../../common/apis/MovieApiKey";
 
 export const fetchAsyncMovies = createAsyncThunk(
     `movies/fetchAsyncMovies`,
-    async () => {
-        const movieText = "Harry";
+    async (term) => {
         const response = await movieApi.get(
-            `?apiKey=${APIKey}&s=${movieText}&type=movie`
+            `?apiKey=${APIKey}&s=${term}&type=movie`
         );
         return response.data;
     }
@@ -15,10 +14,9 @@ export const fetchAsyncMovies = createAsyncThunk(
 
 export const fetchAsyncShows = createAsyncThunk(
     `movies/fetchAsyncShows`,
-    async () => {
-        const seriesText = "Friends";
+    async (term) => {
         const response = await movieApi.get(
-            `?apiKey=${APIKey}&s=${seriesText}&type=series`
+            `?apiKey=${APIKey}&s=${term}&type=series`
         );
         return response.data;
     }
@@ -37,7 +35,7 @@ export const fetchAsyncMovieOrShowDetail = createAsyncThunk(
 const initialState = {
     movies: {},
     shows: {},
-    selectMovieOrShow: {}
+    selectMovieOrShow: {},
 };
 
 const movieSlice = createSlice({
@@ -45,8 +43,8 @@ const movieSlice = createSlice({
     initialState,
     reducers: {
         removeSelectedMovieOrShow: (state) => {
-            state.selectMovieOrShow = {}
-        }
+            state.selectMovieOrShow = {};
+        },
     },
     extraReducers: {
         [fetchAsyncMovies.pending]: () => {
@@ -54,18 +52,18 @@ const movieSlice = createSlice({
         },
         [fetchAsyncMovies.fulfilled]: (state, { payload }) => {
             console.log("Fetched Successfully!");
-            return {...state, movies: payload};
+            return { ...state, movies: payload };
         },
         [fetchAsyncMovies.rejected]: () => {
             console.log("Rejected!");
         },
         [fetchAsyncShows.fulfilled]: (state, { payload }) => {
             console.log("Fetched Successfully!");
-            return {...state, shows: payload};
+            return { ...state, shows: payload };
         },
         [fetchAsyncMovieOrShowDetail.fulfilled]: (state, { payload }) => {
             console.log("Fetched Successfully!");
-            return {...state, selectMovieOrShow: payload};
+            return { ...state, selectMovieOrShow: payload };
         },
     },
 });

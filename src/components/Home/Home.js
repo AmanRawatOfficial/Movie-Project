@@ -5,10 +5,12 @@ import { fetchAsyncMovies, fetchAsyncShows } from "../../redux/movies/movieSlice
 
 function Home() {
     const dispatch = useDispatch();
+    const movieText = "transformers";
+    const showText = "moon"
 
     useEffect(() => {
-        dispatch(fetchAsyncMovies())
-        dispatch(fetchAsyncShows())
+        dispatch(fetchAsyncMovies(movieText))
+        dispatch(fetchAsyncShows(showText))
     }, [dispatch]);
 
     return (
